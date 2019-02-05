@@ -6,6 +6,7 @@ const postWord = '/api/v1/words';
 
 $(document).ready(() => {
   getTopWord()
+  processWordEntry()
 })
 
 const getTopWord = () => {
@@ -49,7 +50,9 @@ const postWords = () =>{
   })
 }
 
-$('#submit-word').on('click', function() {
-  var words = $('#word-entry').val()
-  words.split
-});
+const processWordEntry = () => {
+  $('#submit-word').on('click', function() {
+  let words = $('#word-entry').val()
+  let brokenWords = words.split(" ")
+  });
+}
