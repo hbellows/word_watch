@@ -38,15 +38,18 @@ const postWords = () =>{
     },
     body: JSON.stringify({
       "word": {
-        "value": $("#location").val()
+        "value": $("#word-entry").val()
       }
     })
-
     // { word: { value: "sample" } }
-
   })
   .then((response) => response.json())
   .then((res) => {
     alert(res.message)
   })
 }
+
+$('#submit-word').on('click', function() {
+  var words = $('#word-entry').val()
+  words.split
+});
