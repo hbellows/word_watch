@@ -29,30 +29,33 @@ const displayTopWord = (data) => {
   `)
 }
 
-const postWords = (brokenWords) =>{
+const postWords = (brokenWords) => {
   let url = `${productionUrl}` + `${postWord}`
-  fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
-    },
-    body: JSON.stringify({
-      "word": {
-        "value": $("#word-entry").val()
-      }
+  brokenWords.forEach(function(word) { 
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        "word": {
+          "value": `${word}`
+        }
+      })
+      // { word: { value: "sample" } }
     })
-    // { word: { value: "sample" } }
-  })
-  .then((response) => response.json())
-  .then((res) => {
-    alert(res.message)
+    .then((response) => response.json())
+    .then((res) => {
+      alert(res.message)
+    })
   })
 }
 
 const processWordEntry = () => {
   $('#submit-word').on('click', function() {
-  let words = $('#word-entry').val()
-  let brokenWords = words.split(" ")
+    let words = $('#word-entry').val();
+    let brokenWords = words.split(" ");
+    postWords(brokenWords)
   });
 }
