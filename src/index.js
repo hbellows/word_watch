@@ -28,7 +28,7 @@ const displayTopWord = (data) => {
   `)
 }
 
-const postWords = (wordData) =>{
+const postWords = () =>{
   let url = `${productionUrl}` + `${postWord}`
   fetch(url, {
     method: 'POST',
@@ -36,7 +36,14 @@ const postWords = (wordData) =>{
       'Content-Type': 'application/json',
       'Accept': 'application/json'
     },
-    body: JSON.stringify(wordData)
+    body: JSON.stringify({
+      "word": {
+        "value": $("#location").val()
+      }
+    })
+
+    // { word: { value: "sample" } }
+
   })
   .then((response) => response.json())
   .then((res) => {
