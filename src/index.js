@@ -29,7 +29,7 @@ const displayTopWord = (data) => {
   `)
 }
 
-const postWords = () =>{
+const postWords = (brokenWords) =>{
   let url = `${productionUrl}` + `${postWord}`
   fetch(url, {
     method: 'POST',
