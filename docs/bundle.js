@@ -87,6 +87,7 @@ const postWord = '/api/v1/words';
 
 __WEBPACK_IMPORTED_MODULE_0_jquery___default()(document).ready(() => {
   getTopWord()
+  processWordEntry()
 })
 
 const getTopWord = () => {
@@ -108,6 +109,39 @@ const displayTopWord = (data) => {
     <h2>${Object.keys(data.word)}: ${Object.values(data.word)}</h2>
   `)
 }
+
+const postWords = (brokenWords) => {
+  let url = `${productionUrl}` + `${postWord}`
+  brokenWords.forEach(function(word) { 
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        word: {
+          value: `${word}`
+        }
+      })
+      // { word: { value: "sample" } }
+    })
+    .then((response) => response.json())
+    .then((res) => {
+      alert(res.message);
+      console.log(res)
+    })
+  })
+}
+
+const processWordEntry = () => {
+  __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#submit-word').on('click', function() {
+    let words = __WEBPACK_IMPORTED_MODULE_0_jquery___default()('#word-entry').val();
+    let brokenWords = words.split(" ");
+    postWords(brokenWords)
+  });
+}
+
 
 /***/ }),
 /* 2 */
