@@ -39,8 +39,8 @@ const postWords = (brokenWords) => {
         'Accept': 'application/json'
       },
       body: JSON.stringify({
-        "word": {
-          "value": `${word}`
+        word: {
+          value: `${word}`
         }
       })
       // { word: { value: "sample" } }
