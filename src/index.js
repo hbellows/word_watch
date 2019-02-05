@@ -27,3 +27,19 @@ const displayTopWord = (data) => {
     <h2>${Object.keys(data.word)}: ${Object.values(data.word)}</h2>
   `)
 }
+
+const postWords = (wordData) =>{
+  let url = `${productionUrl}` + `${postWord}`
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify(wordData)
+  })
+  .then((response) => response.json())
+  .then((res) => {
+    alert(res.message)
+  })
+}
